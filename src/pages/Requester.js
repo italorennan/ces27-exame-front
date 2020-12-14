@@ -20,17 +20,21 @@ function Requester() {
     })
 
     useEffect(() => {
-        let web3 = undefined;
-
         // Realizar conexão com a blockchain
-        if (typeof web3 !== 'undefined') {
+        /*if (typeof web3 !== 'undefined') {
             // Usar provedor MetaMask
             web3 = new Web3(web3.currentProvider);
         }
         else {
             // Usar provedor localhost
             web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
+        }*/
+
+        if (window.ethereum) {
+            window.web3 = new Web3(window.ethereum);
+            window.ethereum.enable();
         }
+        let web3 = window.web3;
 
         // Salvar endereço da conta
         let walletAddr = '';
